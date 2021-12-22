@@ -10,25 +10,22 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/indicator"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="-2dp" />
+        android:layout_above="@id/layout_indicator"
+        android:layout_centerVertical="true" />
 
     <LinearLayout
+        android:id="@+id/layout_indicator"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        >
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black">
 
         <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
             android:id="@+id/indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#000000"
-            app:dotsCornerRadius="8dp"
-            app:dotsSize="16dp"
-            android:layout_centerHorizontal="true"
-            app:dotsSpacing="4dp"
-            app:dotsStrokeWidth="2dp" />
+            android:layout_gravity="center"
+            android:background="#000000" />
 
     </LinearLayout>
 
