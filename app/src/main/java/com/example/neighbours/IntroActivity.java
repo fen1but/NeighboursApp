@@ -7,11 +7,11 @@ import android.os.Bundle;
 
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 
-public class MainActivity extends AppCompatActivity {
+public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_intro);
         getSupportActionBar().hide();
 
         WormDotsIndicator indicator = findViewById(R.id.indicator);

@@ -33,7 +33,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Toast.makeText(context, ""+position+1, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, ""+position+1, Toast.LENGTH_SHORT).show();
     }
 
     @Override
