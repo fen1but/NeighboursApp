@@ -5,9 +5,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
-//todo viewpager animation, delete bar
 public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

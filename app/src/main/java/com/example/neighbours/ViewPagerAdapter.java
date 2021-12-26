@@ -1,9 +1,12 @@
 package com.example.neighbours;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,7 +20,6 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
     private Context context;
     ArrayList<Integer> pictures;
     ArrayList<String> text;
-
     public ViewPagerAdapter(Context context) {
         this.context = context;
         pictures = new ArrayList<>();
@@ -27,7 +29,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
         text = new ArrayList<>();
         text.add("Welcome!");
         text.add("Find engaging\nrent mates");
-        text.add("Rent together - pay less");
+        text.add("Rent together -\npay less");
     }
 
     @NonNull
@@ -39,6 +41,16 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        if(position==2){
+            holder.btn_start.setVisibility(View.VISIBLE);
+            holder.btn_start.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(context, LogInActivity.class));
+                }
+            });
+        }
+
         holder.img.setImageResource(pictures.get(position));
         holder.txt.setText(text.get(position));
     }
@@ -51,8 +63,10 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.MyVi
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
         TextView txt;
+        Button btn_start;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            btn_start = itemView.findViewById(R.id.btn_start);
             img = itemView.findViewById(R.id.img);
             txt = itemView.findViewById(R.id.text);
         }

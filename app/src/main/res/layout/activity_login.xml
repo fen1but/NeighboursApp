@@ -51,8 +51,8 @@
         android:layout_alignParentRight="true"
         android:fontFamily="@font/inter_regular"
         android:text="Forgot a password?"
-        android:textSize="18sp"
-        android:textColor="#8A8A8A"/>
+        android:textColor="#8A8A8A"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btn_enter"
@@ -63,4 +63,36 @@
         android:background="@drawable/shape_round"
         android:fontFamily="@font/inter_bold"
         android:text="Enter" />
+
+    <ImageView
+        android:id="@+id/iv_google"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/btn_enter"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/googleicon" />
+
+    <TextView
+        android:id="@+id/tv_noacc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_google"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:text="No account?"
+        android:textAlignment="center"
+        android:textColor="#8A8A8A"
+        android:textSize="22dp" />
+
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_noacc"
+        android:layout_centerHorizontal="true"
+        android:text="Register"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="22dp" />
+
 </RelativeLayout>

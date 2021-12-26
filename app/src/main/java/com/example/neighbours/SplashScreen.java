@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class SplashScreen extends AppCompatActivity {
@@ -49,7 +50,8 @@ public class SplashScreen extends AppCompatActivity {
                 }
                 editor.putBoolean("intro_key", false);
                 editor.commit();
-                startActivity(intent);
+                Intent intent1 = new Intent(SplashScreen.this, IntroActivity.class);
+                startActivity(intent1);
                 finish();
             }
         },3000);
