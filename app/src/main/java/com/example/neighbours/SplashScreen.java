@@ -45,7 +45,7 @@ public class SplashScreen extends AppCompatActivity {
                 }
                 else{
                     intent=new Intent(SplashScreen.this,
-                            MainActivity.class);
+                            LogInActivity.class);
                 }
                 editor.putBoolean("intro_key", false);
                 editor.commit();

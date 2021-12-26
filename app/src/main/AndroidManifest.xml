@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Neighbours">
         <activity
-            android:name=".MainActivity"
+            android:name=".LogInActivity"
             android:exported="false" />
         <activity
             android:name=".IntroActivity"

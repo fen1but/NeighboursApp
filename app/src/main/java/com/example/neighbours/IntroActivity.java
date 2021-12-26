@@ -19,14 +19,8 @@ public class IntroActivity extends AppCompatActivity {
 
         WormDotsIndicator indicator = findViewById(R.id.indicator);
 
-        int[] list = new int[3];
-        list[0] = 1;
-        list[1] = 2;
-        list[2] = 3;
-
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this, list);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(this);
         ViewPager2 viewPager2 = findViewById(R.id.viewpager);
-        //viewPager2.setPageTransformer(new DepthPageTransformer()); --viewpager2 animation
         viewPager2.setAdapter(adapter);
         indicator.setViewPager2(viewPager2);
 
