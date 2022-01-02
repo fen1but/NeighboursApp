@@ -13,7 +13,7 @@
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/inter_extrabold"
         android:text="Register"
         android:textColor="@color/black"
@@ -44,16 +44,28 @@
         android:textColorLink="#676767" />
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/et_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_email"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/inter_regular"
-        android:hint="Password"
+        android:hint="Phone number"
         android:textColor="#000000"
         android:textColorHighlight="#000000"
         android:textColorLink="#676767" />
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_phone"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/inter_regular"
+        android:hint="Password"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorLink="#676767"/>
 
     <EditText
         android:id="@+id/et_passwordconfirm"
@@ -83,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_enter"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/inter_regular"
         android:text="Log in"
         android:textAlignment="center"
