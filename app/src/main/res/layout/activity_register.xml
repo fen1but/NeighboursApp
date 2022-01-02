@@ -13,17 +13,29 @@
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/inter_extrabold"
-        android:text="Log in"
+        android:text="Register"
         android:textColor="@color/black"
         android:textSize="40dp" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_login"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/inter_regular"
+        android:hint="Full name"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorLink="#676767" />
 
     <EditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_login"
+        android:layout_below="@id/et_name"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/inter_regular"
         android:hint="Email"
@@ -43,58 +55,39 @@
         android:textColorHighlight="#000000"
         android:textColorLink="#676767" />
 
-    <TextView
-        android:id="@+id/tv_forgot"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/et_passwordconfirm"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_password"
-        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/inter_regular"
-        android:text="Forgot a password?"
-        android:textColor="#8A8A8A"
-        android:textSize="18sp" />
+        android:hint="Confirm password"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorLink="#676767" />
 
     <Button
         android:id="@+id/btn_enter"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_below="@id/tv_forgot"
+        android:layout_below="@id/et_passwordconfirm"
         android:layout_marginVertical="30dp"
         android:background="@drawable/shape_round"
         android:fontFamily="@font/inter_bold"
         android:text="Enter" />
 
-    <ImageView
-        android:id="@+id/iv_google"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+    <TextView
+        android:id="@+id/tv_backlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/btn_enter"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/googleicon" />
-
-    <TextView
-        android:id="@+id/tv_noacc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/iv_google"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="No account?"
-        android:textAlignment="center"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/inter_regular"
-        android:textColor="#8A8A8A"
-        android:textSize="22dp" />
-
-    <TextView
-        android:id="@+id/tv_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_noacc"
-        android:layout_centerHorizontal="true"
-        android:text="Register"
+        android:text="Log in"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:fontFamily="@font/inter_regular"
         android:textSize="22dp" />
 
 </RelativeLayout>

@@ -50,6 +50,7 @@ public class SplashScreen extends AppCompatActivity {
                 }
                 editor.putBoolean("intro_key", false);
                 editor.commit();
+                //todo отладка
                 Intent intent1 = new Intent(SplashScreen.this, IntroActivity.class);
                 startActivity(intent1);
                 finish();

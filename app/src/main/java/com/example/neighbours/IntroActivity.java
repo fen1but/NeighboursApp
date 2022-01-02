@@ -14,9 +14,9 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
+        getSupportActionBar().hide();
         View decorView = getWindow().getDecorView();
         Utils.hideBars(decorView);
-
         WormDotsIndicator indicator = findViewById(R.id.indicator);
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(this);
