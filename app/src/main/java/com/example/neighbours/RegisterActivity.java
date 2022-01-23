@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -24,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button btn_enter;
     EditText et_name, et_email, et_password, et_passwordconfirm, et_phone;
     private FirebaseAuth mAuth;
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +90,11 @@ public class RegisterActivity extends AppCompatActivity {
             et_email.requestFocus();
             return;
         }
+        if(!Patterns.PHONE.matcher(phone).matches()){
+            et_phone.setError("Provide a valid phone number");
+            et_phone.requestFocus();
+            return;
+        }
         if(password.length() < 6){
             et_password.setError("Password should be longer than 6 characters");
             et_password.requestFocus();
@@ -107,8 +115,12 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                //todo отладка регистрации
-                                startActivity(new Intent(RegisterActivity.this, TestActivity.class));
+//                                editor.putString("email_key", email);
+//                                editor.putString("name_key", name);
+//                                editor.putString("phone_key", phone);
+//                                editor.putString("password_key", password);
+//                                editor.commit();
+                                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                             }
                             else{
                                 Toast.makeText(RegisterActivity.this, "Failed to register", Toast.LENGTH_LONG).show();
