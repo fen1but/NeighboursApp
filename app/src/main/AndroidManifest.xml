@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Neighbours">
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreen"
             android:exported="false" />
         <activity
             android:name=".TestActivity"
@@ -28,7 +28,7 @@
             android:name=".IntroActivity"
             android:exported="true" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

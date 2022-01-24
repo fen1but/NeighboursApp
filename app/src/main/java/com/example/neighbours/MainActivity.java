@@ -22,8 +22,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MapFragment()).commit();
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        setTitle("Map");
         bnw = findViewById(R.id.bottomNavigation);
+        bnw.setSelectedItemId(R.id.item2);
         bnw.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -31,12 +32,15 @@ public class MainActivity extends AppCompatActivity {
                 switch(item.getItemId()){
                     case R.id.item2:
                         fragment = new MapFragment();
+                        setTitle("Map");
                         break;
                     case R.id.item1:
                         fragment = new PeopleFragment();
+                        setTitle("People");
                         break;
                     case R.id.item3:
                         fragment = new AccountFragment();
+                        setTitle("Account");
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
