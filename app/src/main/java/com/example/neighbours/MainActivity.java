@@ -9,11 +9,21 @@ import android.app.ActionBar;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bnw;
@@ -58,11 +68,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.item1) {
-            return true;
+        switch(item.getItemId()) {
+            case R.id.item2:
+                setTitle("Filters");
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new FiltersFragment()).commit();
+                break;
         }
-
+        //getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
         return super.onOptionsItemSelected(item);
     }
 }

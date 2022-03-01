@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Roman/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/list_content.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/Roman/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/Roman/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.2484375" />
+        <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/drawable/circular.xml" value="0.2484375" />
+        <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.2484375" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/drawable/ic_baseline_edit_attributes_24.xml" value="0.2484375" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/drawable/ic_baseline_filter_alt_24.xml" value="0.2484375" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/drawable/ic_baseline_location_searching_24.xml" value="0.2484375" />
@@ -10,7 +16,7 @@
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/drawable/shape_panel.xml" value="0.2484375" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/drawable/shape_round.xml" value="0.2578125" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/font/font.xml" value="0.271875" />
-        <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/account_fragment.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/account_fragment.xml" value="0.264" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/activity_filters_fragment.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/activity_forgot.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/activity_intro.xml" value="0.3154269972451791" />
@@ -19,7 +25,11 @@
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/activity_register.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/activity_test.xml" value="0.24166666666666667" />
-        <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/fragment_item.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/apartment_dialog.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/filters_list_item.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/fragment_blank.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/fragment_filters.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/fragment_item.xml" value="0.4" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/fragment_item_list.xml" value="0.21822916666666667" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/item_viewpager.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/item_viewpager_1.xml" value="0.24166666666666667" />
@@ -27,6 +37,7 @@
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/item_viewpager_3.xml" value="0.264" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/map_fragment.xml" value="0.2" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/people_fragment.xml" value="0.23229166666666667" />
+        <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/row_in_filter.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/layout/test.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/menu/menu.xml" value="0.23229166666666667" />
         <entry key="..\:/Users/Roman/StudioProjects/NeighboursApp/app/src/main/res/menu/nav_items.xml" value="0.23229166666666667" />

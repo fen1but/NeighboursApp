@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_enter"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="1dp"
         android:fontFamily="@font/inter_regular"
         android:text="Log in"
         android:textAlignment="center"

@@ -2,6 +2,15 @@ package com.example.neighbours;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 public class Utils {
     public static void hideBars(View decorView){
         //hide status bar and navigation
@@ -13,4 +22,6 @@ public class Utils {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
         decorView.setSystemUiVisibility(uiOptions);
     }
+
+
 }

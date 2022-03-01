@@ -5,9 +5,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center">
 
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map"
+        tools:context=".MapsActivity"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_alignParentBottom="true"
+            app:backgroundTint="@color/pink"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="120dp"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/bottom_sheet"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="30dp"
@@ -25,18 +51,19 @@
             app:tint="@color/gray"
 
             android:layout_gravity="center|top"/>
+
         <androidx.core.widget.NestedScrollView
-            android:paddingTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingTop="12dp">
+
             <TextView
-                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nisi nisl, commodo interdum nulla et, euismod sodales est. Donec in felis sit amet elit efficitur pulvinar in vitae turpis. Fusce rhoncus varius lorem vel ullamcorper. Nam semper, lacus volutpat volutpat accumsan, libero orci facilisis augue, ac ultrices sem quam ut ex. Maecenas posuere tellus quis diam aliquam malesuada. Nunc at lacus cursus, rutrum augue vel, vestibulum augue. Pellentesque porta pharetra neque, ac finibus odio aliquet a. Aliquam commodo justo eu quam tempor maximus. Phasellus in leo vitae justo tincidunt porttitor. Integer at massa eu nibh posuere iaculis. Phasellus ullamcorper augue in urna mollis, vel aliquet lorem molestie. Proin in vestibulum massa. Maecenas hendrerit euismod dolor, et feugiat justo iaculis et. "
-                android:textSize="30sp"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                />
+                android:textSize="30sp" />
 
         </androidx.core.widget.NestedScrollView>
 

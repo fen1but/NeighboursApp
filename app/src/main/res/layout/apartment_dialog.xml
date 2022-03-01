@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/tv_latitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="latitude" />
+            <EditText
+                android:id="@+id/tv_longitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="longitude"
+                android:layout_below="@+id/tv_latitude" />
+
+            <EditText
+                android:id="@+id/tv_floor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_longitude"
+                android:hint="floor" />
+            <EditText
+                android:id="@+id/tv_rooms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="rooms"
+                android:layout_below="@+id/tv_floor"/>
+            <EditText
+                android:id="@+id/tv_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="area"
+                android:layout_below="@+id/tv_rooms"/>
+            <EditText
+                android:id="@+id/tv_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="price"
+                android:layout_below="@+id/tv_area"/>
+
+            <Spinner
+                android:id="@+id/spinner_waterboiler"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/tv_price"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown" />
+            <Spinner
+                android:id="@+id/spinner_ac"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                android:layout_below="@+id/spinner_waterboiler" />
+            <Spinner
+                android:id="@+id/spinner_kosherkitchen"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                android:layout_below="@+id/spinner_ac"/>
+            <EditText
+                android:id="@+id/arnona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="arnona"
+                android:layout_below="@+id/spinner_kosherkitchen"/>
+            <EditText
+                android:id="@+id/tv_water"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="water"
+                android:layout_below="@+id/arnona"/>
+            <EditText
+                android:id="@+id/tv_electricity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="electricity"
+                android:layout_below="@+id/tv_water"/>
+            <Spinner
+                android:id="@+id/spinner_elevator"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                android:layout_below="@+id/tv_electricity"/>
+            <Spinner
+                android:id="@+id/spinner_pets"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"
+                android:layout_below="@+id/spinner_elevator"/>
+            <EditText
+                android:id="@+id/tv_roomates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="roomates"
+                android:layout_below="@+id/tv_pets"/>
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>
