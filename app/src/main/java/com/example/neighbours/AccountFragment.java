@@ -58,7 +58,7 @@ public class AccountFragment extends androidx.fragment.app.Fragment {
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     if(data.getKey().equals(uid))
-                        tv_name.setText(data.getValue(User.class).getName());
+                        tv_name.setText("Hi, " + data.getValue(User.class).getName());
                 }
             }
 

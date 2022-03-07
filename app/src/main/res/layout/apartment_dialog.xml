@@ -12,17 +12,38 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/tv_latitude"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="latitude" />
-            <EditText
-                android:id="@+id/tv_longitude"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="longitude"
-                android:layout_below="@+id/tv_latitude" />
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:elevation="10dp"
+                android:background="#fff"
+                android:id="@+id/relLayout1">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/ic_magnify"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_magnify"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/ic_magnify"
+                    android:layout_centerVertical="true"
+                    android:textSize="15sp"
+                    android:textColor="#000"
+                    android:id="@+id/input_search"
+                    android:background="@null"
+                    android:hint="Enter Address, City or Zip Code"
+                    android:imeOptions="actionSearch"/>
+
+
+            </RelativeLayout>
 
             <EditText
                 android:id="@+id/tv_floor"
@@ -108,6 +129,16 @@
                 android:layout_height="wrap_content"
                 android:hint="roomates"
                 android:layout_below="@+id/tv_pets"/>
+            <Button
+                android:id="@+id/btn_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add images"
+                android:layout_below="@+id/tv_roomates"/>
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
