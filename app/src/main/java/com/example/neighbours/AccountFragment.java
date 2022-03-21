@@ -35,7 +35,7 @@ public class AccountFragment extends androidx.fragment.app.Fragment {
         menu.clear();
         super.onCreateOptionsMenu(menu, inflater);
 
-        uid = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         userRef = FirebaseDatabase.getInstance().getReference("Users/");
 
         imageView = (ImageView) getView().findViewById(R.id.imageView);

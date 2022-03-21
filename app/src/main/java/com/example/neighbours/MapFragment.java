@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -48,6 +50,7 @@ import java.util.ArrayList;
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private FloatingActionButton fab;
+    private ImageView ic_gps;
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
@@ -78,6 +81,37 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 openDialog();
+            }
+        });
+        ic_gps = view.findViewById(R.id.ic_gps);
+        ic_gps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+
+                try{
+                    if(mLocationPermissionsGranted){
+
+                        @SuppressLint("MissingPermission") final Task location = mFusedLocationProviderClient.getLastLocation();
+                        location.addOnCompleteListener(new OnCompleteListener() {
+                            @Override
+                            public void onComplete(@NonNull Task task) {
+                                if(task.isSuccessful()){
+                                    Location currentLocation = (Location) task.getResult();
+
+                                    moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
+                                            DEFAULT_ZOOM);
+
+                                }else{
+                                    Log.d("TAG", "onComplete: current location is null");
+                                    Toast.makeText(getActivity(), "unable to get current location", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                }catch (SecurityException e){
+                    Log.e("TAG", "getDeviceLocation: SecurityException: " + e.getMessage() );
+                }
             }
         });
         BottomSheetBehavior bottomSheet = BottomSheetBehavior.from(layout);

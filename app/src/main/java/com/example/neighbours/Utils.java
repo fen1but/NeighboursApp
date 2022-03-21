@@ -33,8 +33,8 @@ public class Utils {
 
     public static void addMarker(String title, Apartment apartment, GoogleMap mMap){
         mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(apartment.getLatitude(), apartment.getLongitude()))
-                .title(title)
+                .position(new LatLng(Double.parseDouble(apartment.getLatitude()), Double.parseDouble(apartment.getLongitude())))
+                .title(apartment.getLatitude()+ ", "+ apartment.getLongitude())
                 .icon(getMarkerIcon("#005FFF")));
     }
 

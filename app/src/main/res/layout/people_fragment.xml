@@ -2,11 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/lv_roomates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView"
+
+        </ListView>
+    </ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="people fragment" />
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        app:backgroundTint="@color/pink"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="70dp"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
 </RelativeLayout>

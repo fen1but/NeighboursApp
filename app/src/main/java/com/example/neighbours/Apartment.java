@@ -3,8 +3,8 @@ package com.example.neighbours;
 public class Apartment {
     private String imgId;
     private String id;
-    private double latitude;
-    private double longitude;
+    private String latitude;
+    private String longitude;
     private int floor;
     private int rooms;
     private double area;
@@ -19,11 +19,10 @@ public class Apartment {
     private boolean pets;
     private int roomates;
 
-    public Apartment(){
-
+    public Apartment() {
     }
 
-    public Apartment(String imgId, String id, double latitude, double longitude, int floor, int rooms, double area, double price, boolean waterboiler, boolean ac, boolean kosherkitchen, double arnona, double water, double elctricity, boolean elevator, boolean pets, int roomates) {
+    public Apartment(String imgId, String id, String latitude, String longitude, int floor, int rooms, double area, double price, boolean waterboiler, boolean ac, boolean kosherkitchen, double arnona, double water, double elctricity, boolean elevator, boolean pets, int roomates) {
         this.imgId = imgId;
         this.id = id;
         this.latitude = latitude;
@@ -59,19 +58,19 @@ public class Apartment {
         this.id = id;
     }
 
-    public double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(long latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(long longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 

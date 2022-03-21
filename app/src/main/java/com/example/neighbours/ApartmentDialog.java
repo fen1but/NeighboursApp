@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
@@ -132,7 +133,7 @@ public class ApartmentDialog extends AppCompatDialogFragment {
         }).setPositiveButton("add", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 boolean waterboiler = spinner_waterboiler.getSelectedItem().toString().equals("with waterboiler");
                 boolean ac = spinner_ac.getSelectedItem().toString().equals("with ac");
                 boolean kosherkitchen = spinner_waterboiler.getSelectedItem().toString().equals("kosher kitchen");
@@ -149,7 +150,7 @@ public class ApartmentDialog extends AppCompatDialogFragment {
                             //Toast.makeText(getActivity(),"Successfully added",Toast.LENGTH_SHORT).show();
                             //String imgId = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
                             String imgId = imgName;
-                            Apartment apartment = new Apartment(imgId, uid, address.getLatitude(), address.getLongitude(),
+                            Apartment apartment = new Apartment(imgId, uid, String.valueOf(address.getLatitude()), String.valueOf(address.getLongitude()),
                                     Integer.parseInt(floor.getText().toString()), Integer.parseInt(rooms.getText().toString()), Double.parseDouble(area.getText().toString()),
                                     Double.parseDouble(price.getText().toString()), waterboiler, ac, kosherkitchen, Double.parseDouble(arnona.getText().toString()),
                                     Double.parseDouble(water.getText().toString()), Double.parseDouble(electricity.getText().toString()), elevator, pets,

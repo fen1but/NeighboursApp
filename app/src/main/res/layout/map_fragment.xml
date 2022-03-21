@@ -16,6 +16,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/ic_gps"
+            android:src="@drawable/ic_baseline_my_location_24"/>
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
@@ -56,14 +66,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="12dp">
-
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nisi nisl, commodo interdum nulla et, euismod sodales est. Donec in felis sit amet elit efficitur pulvinar in vitae turpis. Fusce rhoncus varius lorem vel ullamcorper. Nam semper, lacus volutpat volutpat accumsan, libero orci facilisis augue, ac ultrices sem quam ut ex. Maecenas posuere tellus quis diam aliquam malesuada. Nunc at lacus cursus, rutrum augue vel, vestibulum augue. Pellentesque porta pharetra neque, ac finibus odio aliquet a. Aliquam commodo justo eu quam tempor maximus. Phasellus in leo vitae justo tincidunt porttitor. Integer at massa eu nibh posuere iaculis. Phasellus ullamcorper augue in urna mollis, vel aliquet lorem molestie. Proin in vestibulum massa. Maecenas hendrerit euismod dolor, et feugiat justo iaculis et. "
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Close to you"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="30sp"
+                    android:id="@+id/tv_close"/>
+                <ListView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_close">
+
+                </ListView>
+
+
+            </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/tv_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="how much r u ready to pay?" />
+    <EditText
+        android:id="@+id/tv_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="age"
+        android:layout_below="@+id/tv_pay"/>
+    <EditText
+        android:id="@+id/tv_bio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="bio"
+        android:layout_below="@+id/tv_age"/>
+    <Spinner
+        android:id="@+id/spinner_sex"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/tv_bio"/>
+    <Spinner
+        android:id="@+id/spinner_pet"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_below="@+id/spinner_sex"/>
+    <Button
+        android:id="@+id/btn_images"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add images"
+        android:layout_below="@+id/spinner_pet"/>
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_images"/>
+</RelativeLayout>
