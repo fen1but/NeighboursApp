@@ -73,7 +73,7 @@ public class ApartmentDialog extends AppCompatDialogFragment {
         img = view.findViewById(R.id.img);
         mSearchText = view.findViewById(R.id.input_search);
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
-        firebaseDatabase = FirebaseDatabase.getInstance();
+            firebaseDatabase = FirebaseDatabase.getInstance();
         btn_images.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,12 +150,12 @@ public class ApartmentDialog extends AppCompatDialogFragment {
                             //Toast.makeText(getActivity(),"Successfully added",Toast.LENGTH_SHORT).show();
                             //String imgId = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
                             String imgId = imgName;
-                            Apartment apartment = new Apartment(imgId, uid, String.valueOf(address.getLatitude()), String.valueOf(address.getLongitude()),
+                            postRef = firebaseDatabase.getReference("Apartments").push();
+                            Apartment apartment = new Apartment(imgId,postRef.getKey(), uid, String.valueOf(address.getLatitude()), String.valueOf(address.getLongitude()),
                                     Integer.parseInt(floor.getText().toString()), Integer.parseInt(rooms.getText().toString()), Double.parseDouble(area.getText().toString()),
                                     Double.parseDouble(price.getText().toString()), waterboiler, ac, kosherkitchen, Double.parseDouble(arnona.getText().toString()),
                                     Double.parseDouble(water.getText().toString()), Double.parseDouble(electricity.getText().toString()), elevator, pets,
                                     Integer.parseInt(roomates.getText().toString()));
-                            postRef = firebaseDatabase.getReference("Apartments").push();
                             postRef.setValue(apartment);
                         }
                     }).addOnFailureListener(new OnFailureListener() {

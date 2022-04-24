@@ -13,6 +13,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SplashScreen extends AppCompatActivity {
     ImageView iv_icon;
     Animation anim_fadein;
@@ -37,22 +39,12 @@ public class SplashScreen extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(SplashScreen.this,
-                        IntroActivity.class);
-                Log.d("tag", ""+sp.getBoolean("intro_key", false));
-                if(sp.getBoolean("intro_key", true)){
-                    intent= new Intent(SplashScreen.this,
-                            IntroActivity.class);
+                if(FirebaseAuth.getInstance().getUid() != null){
+                    startActivity(new Intent(SplashScreen.this, MainActivity.class));
                 }
-                else{
-                    intent=new Intent(SplashScreen.this,
-                            LogInActivity.class);
-                }
-                editor.putBoolean("intro_key", false);
-                editor.commit();
+                else
+                    startActivity(new Intent(SplashScreen.this, IntroActivity.class));
                 //todo отладка
-                Intent intent1 = new Intent(SplashScreen.this, IntroActivity.class);
-                startActivity(intent1);
                 finish();
             }
         },3000);

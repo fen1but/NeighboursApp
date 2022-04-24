@@ -2,7 +2,7 @@ package com.example.neighbours;
 
 public class Apartment {
     private String imgId;
-    private String id;
+    private String id, uid;
     private String latitude;
     private String longitude;
     private int floor;
@@ -22,9 +22,10 @@ public class Apartment {
     public Apartment() {
     }
 
-    public Apartment(String imgId, String id, String latitude, String longitude, int floor, int rooms, double area, double price, boolean waterboiler, boolean ac, boolean kosherkitchen, double arnona, double water, double elctricity, boolean elevator, boolean pets, int roomates) {
+    public Apartment(String imgId, String id,  String uid, String latitude, String longitude, int floor, int rooms, double area, double price, boolean waterboiler, boolean ac, boolean kosherkitchen, double arnona, double water, double elctricity, boolean elevator, boolean pets, int roomates) {
         this.imgId = imgId;
         this.id = id;
+        this.uid = id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.floor = floor;
@@ -177,4 +178,13 @@ public class Apartment {
     public void setRoomates(int roomates) {
         this.roomates = roomates;
     }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
 }

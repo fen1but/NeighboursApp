@@ -14,9 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Neighbours">
-        <activity
-            android:name=".RoomateDialog"
-            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -24,7 +21,16 @@
 
         <activity
             android:name=".SplashScreen"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+
         <activity
             android:name=".TestActivity"
             android:exported="false" />
@@ -38,16 +44,15 @@
             android:name=".LogInActivity"
             android:exported="false" />
         <activity
-            android:name=".IntroActivity"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true" >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".IntroActivity"
+            android:exported="false">
+
         </activity>
     </application>
 

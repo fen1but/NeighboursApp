@@ -31,7 +31,7 @@ public class Utils {
         decorView.setSystemUiVisibility(uiOptions);
     }
 
-    public static void addMarker(String title, Apartment apartment, GoogleMap mMap){
+    public static void addMarker(Apartment apartment, GoogleMap mMap){
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(Double.parseDouble(apartment.getLatitude()), Double.parseDouble(apartment.getLongitude())))
                 .title(apartment.getLatitude()+ ", "+ apartment.getLongitude())

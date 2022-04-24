@@ -13,6 +13,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -33,6 +35,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bnw;
     EditText mSearchText;
     RelativeLayout relLayout_searchBar;
+    Address address;
     boolean searchBar_visibility = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSearchText = findViewById(R.id.input_search);
-        init();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MapFragment()).commit();
         setTitle("Map");
         bnw = findViewById(R.id.bottomNavigation);
@@ -62,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 switch(item.getItemId()){
                     case R.id.item2:
                         fragment = new MapFragment();
+                        //todo show markers
                         setTitle("Map");
                         break;
                     case R.id.item1:
@@ -75,6 +82,22 @@ public class MainActivity extends AppCompatActivity {
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
                 return true;
+            }
+        });
+        mSearchText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                geoLocate();
             }
         });
 
@@ -108,23 +131,23 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void init(){
-        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_SEARCH
-                        || actionId == EditorInfo.IME_ACTION_DONE
-                        || event.getAction() == KeyEvent.ACTION_DOWN
-                        || event.getAction() == KeyEvent.KEYCODE_ENTER){
-
-                    //execute our method for searching
-                    geoLocate();
-            }
-
-                return false;
-            }
-        });
-    }
+//    private void init(){
+//        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if(actionId == EditorInfo.IME_ACTION_SEARCH
+//                        || actionId == EditorInfo.IME_ACTION_DONE
+//                        || event.getAction() == KeyEvent.ACTION_DOWN
+//                        || event.getAction() == KeyEvent.KEYCODE_ENTER){
+//
+//
+//                    geoLocate();
+//            }
+//
+//                return false;
+//            }
+//        });
+//    }
 
     private void geoLocate() {
         String searchString = mSearchText.getText().toString();
@@ -138,11 +161,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (list.size() > 0) {
-            Address address = list.get(0);
+            address = list.get(0);
             LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
             Log.d(TAG, "geoLocate: found a location: " + address.toString());
             //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
 
         }
+    }
+
+    public Address getSearchedAddress(){
+        return address;
     }
 }
