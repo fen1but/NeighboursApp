@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 switch(item.getItemId()){
                     case R.id.item2:
                         fragment = new MapFragment();
-                        //todo show markers
                         setTitle("Map");
                         break;
                     case R.id.item1:
@@ -130,24 +129,6 @@ public class MainActivity extends AppCompatActivity {
         //getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
         return super.onOptionsItemSelected(item);
     }
-
-//    private void init(){
-//        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//                if(actionId == EditorInfo.IME_ACTION_SEARCH
-//                        || actionId == EditorInfo.IME_ACTION_DONE
-//                        || event.getAction() == KeyEvent.ACTION_DOWN
-//                        || event.getAction() == KeyEvent.KEYCODE_ENTER){
-//
-//
-//                    geoLocate();
-//            }
-//
-//                return false;
-//            }
-//        });
-//    }
 
     private void geoLocate() {
         String searchString = mSearchText.getText().toString();

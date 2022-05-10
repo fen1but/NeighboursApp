@@ -4,32 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="20dp">
+    android:paddingHorizontal="20dp"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/iv_photo"
+        android:layout_marginBottom="20dp"
         android:layout_width="160dp"
         android:layout_height="144dp"
         app:srcCompat="@drawable/icon" />
 
     <TextView
         android:id="@+id/tv_price"
-        android:layout_toRightOf="@id/iv_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/iv_photo"
         android:text="price"
-        android:textColor="@color/pink"
-        android:layout_marginHorizontal="20dp"/>
+        android:textColor="@color/pink" />
 
     <TextView
         android:id="@+id/tv_rooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_price"
-        android:layout_toRightOf="@id/iv_photo"
         android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:layout_toRightOf="@id/iv_photo"
         android:text="rooms"
-        android:layout_marginVertical="43dp"
         android:textColor="@color/pink" />
 
     <TextView

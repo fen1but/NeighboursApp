@@ -2,6 +2,7 @@ package com.example.neighbours;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -30,6 +31,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -41,6 +44,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
@@ -56,13 +60,35 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private RecyclerView lv_close;
     private Repository dataRepo;
     private ApartmentAdapter adapter;
+    Location currentLocation;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION};
+
+
+        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
+                FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
+                    COURSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                mLocationPermissionsGranted = true;
+                initMap();
+            } else {
+                ActivityCompat.requestPermissions(getActivity(),
+                        permissions,
+                        LOCATION_PERMISSION_REQUEST_CODE);
+            }
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                    permissions,
+                    LOCATION_PERMISSION_REQUEST_CODE);
+        }
+
         lv_close = view.findViewById(R.id.lv_close);
         dataRepo = new Repository();
-        setupDialog();
         FrameLayout layout = view.findViewById(R.id.bottom_sheet);
         fab = view.findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -107,29 +133,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         bottomSheet.setPeekHeight(300);
         setupDialog();
         //get location permission
-        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION};
 
-        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
-                FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(),
-                    COURSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                mLocationPermissionsGranted = true;
-                initMap();
-            } else {
-                ActivityCompat.requestPermissions(getActivity(),
-                        permissions,
-                        LOCATION_PERMISSION_REQUEST_CODE);
-            }
-        } else {
-            ActivityCompat.requestPermissions(getActivity(),
-                    permissions,
-                    LOCATION_PERMISSION_REQUEST_CODE);
-        }
-
-
-//        ApartmentAdapter adapter = new ApartmentAdapter(apartmentList, getContext());
-//        lv_close.setAdapter(adapter);
     }
 
     public void showMarkers() {
@@ -138,13 +142,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             public void onChanged(List<Apartment> apartments) {
                 if (mMap != null) {
                     mMap.clear();
+                    currentLocation = mMap.getMyLocation();
                     for (Apartment a : apartments) {
                         try {
-                            Utils.addMarker(a, mMap);    //todo - when exsiting the current fragment its collapse, why?
+                                addMarker(a);
+//                                if(Utils.distanceBetween(currentLocation.getLatitude(), currentLocation.getLongitude(),
+//                                        Double.parseDouble(a.getLatitude()),
+//                                        Double.parseDouble(a.getLongitude())) > 0){
+//                                    closeApartments.add(a);}
                         } catch (Exception e) {
-                            Log.d("stam", e.getMessage());
                         }
 
+                        //adapter.setApartments(closeApartments);
                         adapter.setApartments(apartments);
 
                     }
@@ -247,13 +256,31 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
         }
         showMarkers();
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+
+            public boolean onMarkerClick(@NonNull Marker marker) {
+                Intent intent = new Intent();
+                intent.setClass(getContext(), ApartmentPage.class);
+                intent.putExtra("id", marker.getSnippet());
+                startActivity(intent);
+                return true;
+            }
+        });
+    }
+
+    public void addMarker(Apartment apartment){
+        MarkerOptions marker = new MarkerOptions()
+                .position(new LatLng(Double.parseDouble(apartment.getLatitude()), Double.parseDouble(apartment.getLongitude())))
+                .title(apartment.getId())
+                .snippet(apartment.getId())
+                .icon(Utils.getMarkerIcon("#005FFF"));
+        mMap.addMarker(marker);
     }
 
     private void moveCamera(LatLng latLng, float zoom) {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
     }
-
-
-    //todo когда обновляется значение поиска в мэйн активити, поменять положение карты
 
 }

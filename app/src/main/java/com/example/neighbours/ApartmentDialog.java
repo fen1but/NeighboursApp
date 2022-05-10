@@ -43,6 +43,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ApartmentDialog extends AppCompatDialogFragment {
     public View view;
@@ -151,11 +152,22 @@ public class ApartmentDialog extends AppCompatDialogFragment {
                             //String imgId = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
                             String imgId = imgName;
                             postRef = firebaseDatabase.getReference("Apartments").push();
+
+//                            List<Address> addresses = null;
+//                            addresses.add(address);
+//                            Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+//                            try {
+//                                addresses = geocoder.getFromLocation(address.getLatitude(), address.getLongitude(), 1);
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//                            String address_fix1 = addresses.get(0).getAddressLine(0);
+
                             Apartment apartment = new Apartment(imgId,postRef.getKey(), uid, String.valueOf(address.getLatitude()), String.valueOf(address.getLongitude()),
                                     Integer.parseInt(floor.getText().toString()), Integer.parseInt(rooms.getText().toString()), Double.parseDouble(area.getText().toString()),
                                     Double.parseDouble(price.getText().toString()), waterboiler, ac, kosherkitchen, Double.parseDouble(arnona.getText().toString()),
                                     Double.parseDouble(water.getText().toString()), Double.parseDouble(electricity.getText().toString()), elevator, pets,
-                                    Integer.parseInt(roomates.getText().toString()));
+                                    Integer.parseInt(roomates.getText().toString()), address.getAddressLine(0));
                             postRef.setValue(apartment);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -183,12 +195,6 @@ public class ApartmentDialog extends AppCompatDialogFragment {
         }
     }
 
-    private String getFileExtension(Uri uri){
-        ContentResolver cR = getActivity().getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        return mime.getExtensionFromMimeType(cR.getType(uri));
-    }
-
 //    private void init(){
 //
 //        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -207,6 +213,12 @@ public class ApartmentDialog extends AppCompatDialogFragment {
 //            }
 //        });
 //    }
+
+    private String getFileExtension(Uri uri){
+        ContentResolver cR = getActivity().getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
 
     private void geoLocate(){
 

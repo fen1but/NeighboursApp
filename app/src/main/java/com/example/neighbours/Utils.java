@@ -1,7 +1,11 @@
 package com.example.neighbours;
 
+import android.content.ContentResolver;
 import android.graphics.Color;
+import android.location.Location;
+import android.net.Uri;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 
 import androidx.annotation.NonNull;
 
@@ -31,11 +35,10 @@ public class Utils {
         decorView.setSystemUiVisibility(uiOptions);
     }
 
-    public static void addMarker(Apartment apartment, GoogleMap mMap){
-        mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(Double.parseDouble(apartment.getLatitude()), Double.parseDouble(apartment.getLongitude())))
-                .title(apartment.getLatitude()+ ", "+ apartment.getLongitude())
-                .icon(getMarkerIcon("#005FFF")));
+    public static float distanceBetween(Double latitudeFirst, Double longitudeFirst, Double latitudeSecond, Double longitudeSecond) {
+        float[] distance = new float[1];
+        Location.distanceBetween(latitudeFirst, longitudeFirst, latitudeSecond, longitudeSecond, distance);
+        return distance[0];
     }
 
     public static BitmapDescriptor getMarkerIcon(String color) {

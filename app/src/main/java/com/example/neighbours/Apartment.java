@@ -1,5 +1,7 @@
 package com.example.neighbours;
 
+import android.location.Address;
+
 public class Apartment {
     private String imgId;
     private String id, uid;
@@ -18,11 +20,12 @@ public class Apartment {
     private boolean elevator;
     private boolean pets;
     private int roomates;
+    private String address;
 
     public Apartment() {
     }
 
-    public Apartment(String imgId, String id,  String uid, String latitude, String longitude, int floor, int rooms, double area, double price, boolean waterboiler, boolean ac, boolean kosherkitchen, double arnona, double water, double elctricity, boolean elevator, boolean pets, int roomates) {
+    public Apartment(String imgId, String id,  String uid, String latitude, String longitude, int floor, int rooms, double area, double price, boolean waterboiler, boolean ac, boolean kosherkitchen, double arnona, double water, double elctricity, boolean elevator, boolean pets, int roomates, String address) {
         this.imgId = imgId;
         this.id = id;
         this.uid = id;
@@ -41,6 +44,7 @@ public class Apartment {
         this.elevator = elevator;
         this.pets = pets;
         this.roomates = roomates;
+        this.address = address;
     }
 
     public String getImgId() {
@@ -187,4 +191,11 @@ public class Apartment {
         this.uid = uid;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

@@ -2,8 +2,7 @@ package com.example.neighbours;
 
 public class User {
     //add properties
-    private String name, email, phone;
-    //private int image;
+    private String name, email, phone, uImgId;
     public User(){
 
     }
@@ -12,6 +11,14 @@ public class User {
         this.name = name;
         this.email = email;
         this.phone = phone;
+    }
+
+    public String getuImgId() {
+        return uImgId;
+    }
+
+    public void setuImgId(String uImgId) {
+        this.uImgId = uImgId;
     }
 
     public String getName() {

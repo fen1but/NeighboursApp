@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context=".ApartmentPage">
+
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    //finish the parameters
+
+    <ImageView
+        android:id="@+id/iv_photo"
+        android:layout_width="213dp"
+        android:layout_height="210dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/icon" />
+
+    <TextView
+        android:id="@+id/tv_phone_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_photo"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        android:text="Interested in renting together: "
+        android:textSize="20dp" />
+
+    <ImageView
+        android:layout_width="34dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/iv_photo"
+        android:id="@+id/iv_call"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/tv_phone_name"
+        android:src="@drawable/ic_baseline_phone_24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_addressp_name"
+        android:text="Address: "
+        android:layout_below="@id/tv_phone_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_addressp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_phone_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/tv_addressp_name"
+        android:text="nowhere"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_roomatesp_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_addressp_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Roomates allowed: "
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_roomatesp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_addressp_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/tv_roomatesp_name"
+        android:text="0"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_roomsp_name"
+        android:text="Rooms: "
+        android:layout_below="@id/tv_roomatesp_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_roomsp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_roomatesp_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/tv_roomsp_name"
+        android:text="0"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_floorp_name"
+        android:text="Floor: "
+        android:layout_below="@id/tv_roomsp_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_floorp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_roomsp_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/tv_floorp_name"
+        android:text="0"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_areap_name"
+        android:text="Area: "
+        android:layout_below="@id/tv_floorp_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_areap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_floorp_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/tv_areap_name"
+        android:text="0"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_waterp_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_areap_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Payment for water: "
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_waterp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_areap_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/tv_waterp_name"
+        android:text="0"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_arnonap_name"
+        android:text="Property tax: "
+        android:layout_below="@id/tv_waterp_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_arnonap"
+        android:text="0"
+        android:layout_below="@id/tv_waterp_name"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/tv_arnonap_name"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_electricityp_name"
+        android:text="Payment for electricity: "
+        android:layout_below="@id/tv_arnonap_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_electricityp"
+        android:text="0"
+        android:layout_below="@id/tv_arnonap_name"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/tv_electricityp_name"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_petsp_name"
+        android:text="Pets: "
+        android:layout_below="@id/tv_electricityp_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_petsp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_electricityp_name"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/tv_petsp_name"
+        android:text="unknown"
+        android:textSize="20dp" />
+
+</RelativeLayout>
+</androidx.core.widget.NestedScrollView>
+</RelativeLayout>
