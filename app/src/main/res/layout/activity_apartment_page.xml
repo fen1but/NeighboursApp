@@ -24,22 +24,42 @@
         app:srcCompat="@drawable/icon" />
 
     <TextView
+        android:id="@+id/tv_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save an apartment: "
+        android:layout_below="@id/iv_photo"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/iv_save"
+        android:layout_width="34dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/iv_photo"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/tv_save"
+        android:src="@drawable/ic_baseline_favorite_border_24" />
+
+    <TextView
         android:id="@+id/tv_phone_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iv_photo"
+        android:layout_below="@id/tv_save"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="Interested in renting together: "
         android:textSize="20dp" />
 
     <ImageView
+        android:id="@+id/iv_call"
         android:layout_width="34dp"
         android:layout_height="35dp"
         android:layout_below="@id/iv_photo"
-        android:id="@+id/iv_call"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="70dp"
         android:layout_toRightOf="@id/tv_phone_name"
         android:src="@drawable/ic_baseline_phone_24" />
 
@@ -212,14 +232,15 @@
         android:layout_marginLeft="20dp"/>
 
     <TextView
+        android:id="@+id/tv_petsp_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_petsp_name"
-        android:text="Pets: "
         android:layout_below="@id/tv_electricityp_name"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:textSize="20dp" />
+        android:text="Pets: "
+        android:textSize="20dp"
+        android:layout_marginBottom="40dp"/>
 
     <TextView
         android:id="@+id/tv_petsp"
@@ -230,7 +251,8 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@id/tv_petsp_name"
         android:text="unknown"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_marginBottom="30dp"/>
 
 </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

@@ -34,20 +34,15 @@ public class LogInActivity extends AppCompatActivity {
     EditText et_email, et_password;
     Button btn_enter;
     ImageView iv_google;
-    SharedPreferences sp;
-    SharedPreferences.Editor editor;
+//    SharedPreferences sp;
+//    SharedPreferences.Editor editor;
     private GoogleSignInClient mGoogleSignInClient;
     private final static int RC_SIGN_IN = 123;
 
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(currentUser!=null){
-//            Intent intent = new Intent(getApplicationContext(), TestActivity.class);
-//            startActivity(intent);
-//        }
     }
 
     @Override
@@ -55,26 +50,6 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
-//         sp = getApplicationContext().getSharedPreferences("MySP",
-//                0);
-//        editor = sp.edit();
-//        if(sp.getString("intro_email", "") != null || sp.getString("intro_email", "") != ""){
-//            String name = sp.getString("name_key", "");
-//            String email = sp.getString("name_key", "");
-//            String password = sp.getString("name_key", "");
-//            String phone = sp.getString("name_key", "");
-//            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                @Override
-//                public void onComplete(@NonNull Task<AuthResult> task) {
-//                    if(task.isSuccessful()){
-//                        startActivity(new Intent(LogInActivity.this, TestActivity.class));
-//                    }
-//                    else{
-//                        Toast.makeText(LogInActivity.this, "Failed to login", Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//            });
-//        }
 
         getSupportActionBar().hide();
         et_email = findViewById(R.id.et_email);
@@ -137,6 +112,7 @@ public class LogInActivity extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
+                e.printStackTrace();
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
@@ -151,6 +127,7 @@ public class LogInActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
+                            startActivity(new Intent(LogInActivity.this, MainActivity.class));
                         } else {
                             Toast.makeText(LogInActivity.this, "Sign in failed", Toast.LENGTH_SHORT).show();
                         }

@@ -11,7 +11,7 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginTop="100dp"
-        android:src="@drawable/sunset1" />
+        android:src="@drawable/icon" />
 
     <TextView
         android:layout_toRightOf="@id/imageView"

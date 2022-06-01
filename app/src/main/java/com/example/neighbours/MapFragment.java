@@ -2,9 +2,12 @@ package com.example.neighbours;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -143,18 +146,22 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 if (mMap != null) {
                     mMap.clear();
                     currentLocation = mMap.getMyLocation();
+                    List<Apartment> tmp = new ArrayList<>();
+
                     for (Apartment a : apartments) {
-                        try {
-                                addMarker(a);
-//                                if(Utils.distanceBetween(currentLocation.getLatitude(), currentLocation.getLongitude(),
-//                                        Double.parseDouble(a.getLatitude()),
-//                                        Double.parseDouble(a.getLongitude())) > 0){
-//                                    closeApartments.add(a);}
-                        } catch (Exception e) {
+
+                        addMarker(a);
+                        if (currentLocation == null) {
+                            currentLocation = getMyLocation();
+                        }
+                        if (Utils.distanceBetween(currentLocation.getLatitude(), currentLocation.getLongitude(),
+                                Double.parseDouble(a.getLatitude()),
+                                Double.parseDouble(a.getLongitude())) < 20000) {
+                            tmp.add(a);
                         }
 
                         //adapter.setApartments(closeApartments);
-                        adapter.setApartments(apartments);
+                        adapter.setApartments(tmp);
 
                     }
 
@@ -162,6 +169,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
+    }
+
+    @SuppressLint("MissingPermission")
+    private Location getMyLocation() {
+        LocationManager lm = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
+        @SuppressLint("MissingPermission") Location myLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (myLocation == null) {
+            Criteria criteria = new Criteria();
+            criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+            String provider = lm.getBestProvider(criteria, true);
+            myLocation = lm.getLastKnownLocation(provider);
+        }
+        return myLocation;
     }
 
     public void setupDialog() {
@@ -270,7 +290,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         });
     }
 
-    public void addMarker(Apartment apartment){
+    public void addMarker(Apartment apartment) {
         MarkerOptions marker = new MarkerOptions()
                 .position(new LatLng(Double.parseDouble(apartment.getLatitude()), Double.parseDouble(apartment.getLongitude())))
                 .title(apartment.getId())

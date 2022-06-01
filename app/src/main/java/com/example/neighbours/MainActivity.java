@@ -4,41 +4,30 @@ import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
-import android.app.ActionBar;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout relLayout_searchBar;
     Address address;
     boolean searchBar_visibility = false;
+    MutableLiveData<String> profileUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mSearchText = findViewById(R.id.input_search);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MapFragment()).commit();
         setTitle("Map");
@@ -97,6 +89,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 geoLocate();
+            }
+        });
+
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        profileUri = new MutableLiveData<>();
+        FirebaseDatabase.getInstance().getReference("Users/").child(uid).child("uImgId").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String path = snapshot.getValue(String.class);
+                    FirebaseStorage.getInstance().getReference("/uploads").child(path).getDownloadUrl().addOnSuccessListener(uri -> profileUri.setValue(uri.toString()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
@@ -152,5 +160,9 @@ public class MainActivity extends AppCompatActivity {
 
     public Address getSearchedAddress(){
         return address;
+    }
+
+    public LiveData<String> getProfileUri() {
+        return profileUri;
     }
 }

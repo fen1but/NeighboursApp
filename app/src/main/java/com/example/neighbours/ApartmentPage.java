@@ -3,8 +3,11 @@ package com.example.neighbours;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,7 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+
+import java.util.ArrayList;
 
 public class ApartmentPage extends AppCompatActivity {
     private String id;
@@ -35,7 +42,11 @@ public class ApartmentPage extends AppCompatActivity {
     private TextView tv_roomsp;
     private ImageView iv_call, iv_photo;
     private String phoneNum;
+    private ImageView iv_save;
+    DatabaseReference userRef;
     DatabaseReference apRef;
+    Apartment tmp;
+    ArrayList<String> liked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +58,7 @@ public class ApartmentPage extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+        iv_save = findViewById(R.id.iv_save);
         tv_addressp = findViewById(R.id.tv_addressp);
         tv_roomatesp = findViewById(R.id.tv_roomatesp);
         tv_floorp = findViewById(R.id.tv_floorp);
@@ -63,7 +75,19 @@ public class ApartmentPage extends AppCompatActivity {
         id = intent.getStringExtra("id");
 
         apRef = FirebaseDatabase.getInstance().getReference("Apartments/");
+        userRef = FirebaseDatabase.getInstance().getReference("Users/");
+        DatabaseReference likedRef = userRef.child(FirebaseAuth.getInstance().getUid()).child("Liked");
+
         setData(id);
+
+        iv_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                likedRef.child(id).setValue(userRef.push().getKey());
+
+            }
+        });
     }
 
     @Override
@@ -78,8 +102,35 @@ public class ApartmentPage extends AppCompatActivity {
         apRef.orderByKey().equalTo(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot data) {
-                Apartment tmp = data.child(id).getValue(Apartment.class);
+                tmp = data.child(id).getValue(Apartment.class);
 
+                String uid = tmp.getUid();
+                userRef.orderByKey().equalTo(uid).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User user = snapshot.child(uid).getValue(User.class);
+                        phoneNum = user.getPhone();
+                        if (ActivityCompat.checkSelfPermission(ApartmentPage.this,
+                                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
+                        {
+                            ActivityCompat.requestPermissions(ApartmentPage.this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                iv_call.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse("tel:0"+Integer.valueOf(phoneNum)));
+                        startActivity(callIntent);
+                    }
+                });
                 tv_addressp.setText(tmp.getAddress());
                 tv_roomatesp.setText(String.valueOf(tmp.getRoomates()));
                 tv_floorp.setText(String.valueOf(tmp.getFloor()));
@@ -96,7 +147,7 @@ public class ApartmentPage extends AppCompatActivity {
                 FirebaseStorage.getInstance().getReference("/uploads").child(tmp.getImgId())
                         .getDownloadUrl().addOnSuccessListener(uri -> Glide.with(ApartmentPage.this).load(uri).centerCrop().into(iv_photo));
 
-//                phone number finding
+
             }
 
             @Override

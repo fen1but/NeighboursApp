@@ -19,11 +19,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+
 //todo email verification
 public class RegisterActivity extends AppCompatActivity {
     TextView tv_backlogin;
     Button btn_enter;
     EditText et_name, et_email, et_password, et_passwordconfirm, et_phone;
+    ArrayList<String> liked;
     private FirebaseAuth mAuth;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
@@ -109,7 +113,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    User user = new User(name, email, phone);
+                    User user = new User(name, email, phone, liked);
                     FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

@@ -1,16 +1,19 @@
 package com.example.neighbours;
 
+import java.util.ArrayList;
+
 public class User {
-    //add properties
+    private ArrayList<String> liked;
     private String name, email, phone, uImgId;
     public User(){
 
     }
 
-    public User(String name, String email, String phone){
+    public User(String name, String email, String phone, ArrayList<String> liked){
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.liked = liked;
     }
 
     public String getuImgId() {
@@ -43,5 +46,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public ArrayList<String> getLiked() {
+        return liked;
+    }
+
+    public void setLiked(ArrayList<String> liked) {
+        this.liked = liked;
     }
 }
