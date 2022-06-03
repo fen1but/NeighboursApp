@@ -7,10 +7,4 @@
         android:icon="@drawable/ic_baseline_favorite_border_24"
         app:showAsAction="always">
     </item>
-    <item android:id="@+id/item3"
-        android:title="Search"
-        android:orderInCategory="3"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_baseline_search_24" >
-    </item>
 </menu>

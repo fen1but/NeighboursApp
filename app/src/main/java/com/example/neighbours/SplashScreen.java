@@ -29,13 +29,9 @@ public class SplashScreen extends AppCompatActivity {
         View decorView = getWindow().getDecorView();
         Utils.hideBars(decorView);
 
-//        sp = getApplicationContext().getSharedPreferences("MySP",
-//                0);
-//        editor = sp.edit();
-
         iv_icon = findViewById(R.id.iv_icon);
         handler = new Handler();
-        FirebaseAuth.getInstance().signOut();
+        //FirebaseAuth.getInstance().signOut();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

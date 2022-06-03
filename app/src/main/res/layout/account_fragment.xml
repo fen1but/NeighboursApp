@@ -25,16 +25,5 @@
         android:textColor="@color/black"
         android:textSize="40dp"/>
 
-    <TextView
-        android:id="@+id/tv_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit"
-        android:layout_below="@id/tv_name"
-        android:layout_toRightOf="@id/imageView"
-        android:layout_marginLeft="20dp"
-        android:fontFamily="@font/inter_regular"
-        android:textSize="20dp"/>
-
 
 </RelativeLayout>

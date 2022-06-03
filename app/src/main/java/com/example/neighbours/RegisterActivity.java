@@ -29,8 +29,6 @@ public class RegisterActivity extends AppCompatActivity {
     EditText et_name, et_email, et_password, et_passwordconfirm, et_phone;
     ArrayList<String> liked;
     private FirebaseAuth mAuth;
-    SharedPreferences sp;
-    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

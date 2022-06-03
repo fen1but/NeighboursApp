@@ -36,7 +36,7 @@ import com.google.firebase.storage.UploadTask;
 
 public class AccountFragment extends androidx.fragment.app.Fragment {
     ImageView imageView;
-    TextView tv_name, tv_edit;
+    TextView tv_name;
     DatabaseReference userRef;
     StorageReference mStorageRef;
     String uid;

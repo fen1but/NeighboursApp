@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -62,10 +63,6 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new MapFragment();
                         setTitle("Map");
                         break;
-                    case R.id.item1:
-                        fragment = new PeopleFragment();
-                        setTitle("People");
-                        break;
                     case R.id.item3:
                         fragment = new AccountFragment();
                         setTitle("Account");
@@ -119,9 +116,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()) {
-            case R.id.item2:
-                setTitle("Filters");
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new FiltersFragment()).commit();
+            case R.id.item1:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new LikedFragment()).commit();
                 break;
             case R.id.item3:
                 if(searchBar_visibility) {

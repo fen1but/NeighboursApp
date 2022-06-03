@@ -96,7 +96,6 @@ public class LogInActivity extends AppCompatActivity {
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        //todo deprecated method
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 

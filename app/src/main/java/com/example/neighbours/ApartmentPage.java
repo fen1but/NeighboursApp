@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.Observer;
 
 import android.Manifest;
 import android.content.Intent;
@@ -46,7 +47,7 @@ public class ApartmentPage extends AppCompatActivity {
     DatabaseReference userRef;
     DatabaseReference apRef;
     Apartment tmp;
-    ArrayList<String> liked;
+    Repository repo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class ApartmentPage extends AppCompatActivity {
         tv_roomsp = findViewById(R.id.tv_roomsp);
         iv_call = findViewById(R.id.iv_call);
         iv_photo = findViewById(R.id.iv_photo);
+        repo = new Repository();
 
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
@@ -80,25 +82,32 @@ public class ApartmentPage extends AppCompatActivity {
 
         setData(id);
 
-        iv_save.setOnClickListener(new View.OnClickListener() {
+        repo.isSaved(id).observe(this, new Observer<Boolean>() {
             @Override
-            public void onClick(View v) {
+            public void onChanged(Boolean saved) {
+                if (saved) {
+                    iv_save.setImageResource(R.drawable.ic_heart_filled);
+                    iv_save.setOnClickListener(v -> likedRef.child(id).removeValue());
 
-                likedRef.child(id).setValue(userRef.push().getKey());
+                } else {
+                    iv_save.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+                    iv_save.setOnClickListener(v -> likedRef.child(id).setValue(userRef.push().getKey()));
 
+                }
             }
         });
+
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == android.R.id.home)
+        if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return super.onOptionsItemSelected(item);
 
     }
 
-    private void setData(String id ) {
+    private void setData(String id) {
         apRef.orderByKey().equalTo(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot data) {
@@ -111,8 +120,7 @@ public class ApartmentPage extends AppCompatActivity {
                         User user = snapshot.child(uid).getValue(User.class);
                         phoneNum = user.getPhone();
                         if (ActivityCompat.checkSelfPermission(ApartmentPage.this,
-                                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
-                        {
+                                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(ApartmentPage.this, new String[]{Manifest.permission.CALL_PHONE}, 1);
 
                         }
@@ -127,7 +135,7 @@ public class ApartmentPage extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent callIntent = new Intent(Intent.ACTION_CALL);
-                        callIntent.setData(Uri.parse("tel:0"+Integer.valueOf(phoneNum)));
+                        callIntent.setData(Uri.parse("tel:0" + Integer.valueOf(phoneNum)));
                         startActivity(callIntent);
                     }
                 });
@@ -139,13 +147,16 @@ public class ApartmentPage extends AppCompatActivity {
                 tv_arnonap.setText(String.valueOf(tmp.getArnona()));
                 tv_electricityp.setText(String.valueOf(tmp.getElctricity()));
                 tv_roomsp.setText(String.valueOf(tmp.getRooms()));
-                if(tmp.getPets())
+                if (tmp.getPets())
                     tv_petsp.setText("allowed");
                 else
                     tv_petsp.setText("not allowed");
 
                 FirebaseStorage.getInstance().getReference("/uploads").child(tmp.getImgId())
-                        .getDownloadUrl().addOnSuccessListener(uri -> Glide.with(ApartmentPage.this).load(uri).centerCrop().into(iv_photo));
+                        .getDownloadUrl().addOnSuccessListener(uri -> {
+
+                    Glide.with(ApartmentPage.this).load(uri).centerCrop().into(iv_photo);
+                });
 
 
             }
