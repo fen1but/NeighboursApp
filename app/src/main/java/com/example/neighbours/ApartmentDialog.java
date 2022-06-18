@@ -153,16 +153,6 @@ public class ApartmentDialog extends AppCompatDialogFragment {
                             String imgId = imgName;
                             postRef = firebaseDatabase.getReference("Apartments").push();
 
-//                            List<Address> addresses = null;
-//                            addresses.add(address);
-//                            Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
-//                            try {
-//                                addresses = geocoder.getFromLocation(address.getLatitude(), address.getLongitude(), 1);
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
-//                            String address_fix1 = addresses.get(0).getAddressLine(0);
-
                             Apartment apartment = new Apartment(imgId,postRef.getKey(), uid, String.valueOf(address.getLatitude()), String.valueOf(address.getLongitude()),
                                     Integer.parseInt(floor.getText().toString()), Integer.parseInt(rooms.getText().toString()), Double.parseDouble(area.getText().toString()),
                                     Double.parseDouble(price.getText().toString()), waterboiler, ac, kosherkitchen, Double.parseDouble(arnona.getText().toString()),
@@ -194,25 +184,6 @@ public class ApartmentDialog extends AppCompatDialogFragment {
             img.setImageURI(mImageUri);
         }
     }
-
-//    private void init(){
-//
-//        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-//                if(actionId == EditorInfo.IME_ACTION_SEARCH
-//                        || actionId == EditorInfo.IME_ACTION_DONE
-//                        || keyEvent.getAction() == KeyEvent.ACTION_DOWN
-//                        || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER) {
-//
-//                    //execute our method for searching
-//                    geoLocate();
-//                }
-//
-//                return false;
-//            }
-//        });
-//    }
 
     private String getFileExtension(Uri uri){
         ContentResolver cR = getActivity().getContentResolver();

@@ -14,6 +14,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,11 +37,14 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 public class AccountFragment extends androidx.fragment.app.Fragment {
+    Repository repo;
     ImageView imageView;
     TextView tv_name;
     DatabaseReference userRef;
     StorageReference mStorageRef;
     String uid;
+    EditText et_bio;
+    Button btn_bio;
     private Uri mImageUri;
     private static final int PICK_IMAGE_REQUEST = 1;
 
@@ -58,10 +63,12 @@ public class AccountFragment extends androidx.fragment.app.Fragment {
         setHasOptionsMenu(true);
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.account_fragment, container, false);
 
+        repo = new Repository();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
         userRef = FirebaseDatabase.getInstance().getReference("Users/");
-
+        et_bio = rootView.findViewById(R.id.et_bio);
+        btn_bio = rootView.findViewById(R.id.btn_bio);
         imageView = rootView.findViewById(R.id.imageView);
 
         ((MainActivity)requireActivity()).getProfileUri().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -85,6 +92,15 @@ public class AccountFragment extends androidx.fragment.app.Fragment {
                 startActivityForResult(intent, PICK_IMAGE_REQUEST);
 
             }
+        });
+
+
+        repo.getBio().observe(getViewLifecycleOwner(), s -> et_bio.setText(s));
+
+
+        btn_bio.setOnClickListener(v -> {
+            String bio = et_bio.getText().toString();
+            repo.setBio(bio);
         });
 
         return rootView;

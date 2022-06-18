@@ -148,4 +148,24 @@ public class Repository {
     public LiveData<List<Apartment>> getLikedApartments() {
         return likedApartments;
     }
+
+    public void setBio(String s){
+        database.child("Users").child(FirebaseAuth.getInstance().getUid()).child("bio").setValue(s);
+    }
+
+    public LiveData<String> getBio(){
+        MutableLiveData<String> data = new MutableLiveData<>();
+        database.child("Users").child(FirebaseAuth.getInstance().getUid()).child("bio").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data.setValue(snapshot.getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return data;
+    }
 }

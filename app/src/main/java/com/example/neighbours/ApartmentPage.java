@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -42,12 +43,16 @@ public class ApartmentPage extends AppCompatActivity {
     private TextView tv_petsp;
     private TextView tv_roomsp;
     private ImageView iv_call, iv_photo;
-    private String phoneNum;
+    private String phoneNum, bio, name;
     private ImageView iv_save;
+    private TextView tv_uname;
+    private TextView tv_ubio;
+    private ImageView img_user;
     DatabaseReference userRef;
     DatabaseReference apRef;
     Apartment tmp;
     Repository repo;
+    boolean active;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,7 @@ public class ApartmentPage extends AppCompatActivity {
         actionBar.setTitle("Apartment");
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+        active = true;
 
         iv_save = findViewById(R.id.iv_save);
         tv_addressp = findViewById(R.id.tv_addressp);
@@ -71,6 +77,9 @@ public class ApartmentPage extends AppCompatActivity {
         tv_roomsp = findViewById(R.id.tv_roomsp);
         iv_call = findViewById(R.id.iv_call);
         iv_photo = findViewById(R.id.iv_photo);
+        tv_uname = findViewById(R.id.tv_uname);
+        tv_ubio = findViewById(R.id.tv_ubio);
+        img_user = findViewById(R.id.img_user);
         repo = new Repository();
 
         Intent intent = getIntent();
@@ -119,6 +128,16 @@ public class ApartmentPage extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         User user = snapshot.child(uid).getValue(User.class);
                         phoneNum = user.getPhone();
+                        bio = snapshot.child(uid).child("bio").getValue(String.class);
+                        tv_ubio.setText(bio);
+                        name = user.getName();
+                        tv_uname.setText(name);
+                        FirebaseStorage.getInstance().getReference("uploads").child(user.getuImgId())
+                                .getDownloadUrl().addOnSuccessListener(uri -> {
+                            if (active)
+                                Glide.with(ApartmentPage.this).load(uri).centerCrop().into(img_user);
+                        });
+
                         if (ActivityCompat.checkSelfPermission(ApartmentPage.this,
                                 Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(ApartmentPage.this, new String[]{Manifest.permission.CALL_PHONE}, 1);
@@ -134,7 +153,7 @@ public class ApartmentPage extends AppCompatActivity {
                 iv_call.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        Intent callIntent = new Intent(Intent.ACTION_DIAL);
                         callIntent.setData(Uri.parse("tel:0" + Integer.valueOf(phoneNum)));
                         startActivity(callIntent);
                     }
@@ -154,9 +173,10 @@ public class ApartmentPage extends AppCompatActivity {
 
                 FirebaseStorage.getInstance().getReference("/uploads").child(tmp.getImgId())
                         .getDownloadUrl().addOnSuccessListener(uri -> {
-
-                    Glide.with(ApartmentPage.this).load(uri).centerCrop().into(iv_photo);
+                    if (active)
+                        Glide.with(ApartmentPage.this).load(uri).centerCrop().into(iv_photo);
                 });
+
 
 
             }
@@ -167,5 +187,17 @@ public class ApartmentPage extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        active = true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        active = false;
     }
 }

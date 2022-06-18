@@ -251,7 +251,47 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@id/tv_petsp_name"
         android:text="unknown"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/tv_user_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_petsp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Do you want to rent this apartment with"
         android:textSize="20dp"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:id="@+id/img_user"
+        android:layout_below="@id/tv_user_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/icon"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_uname"
+        android:layout_below="@id/img_user"
+        android:text="Name"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:fontFamily="@font/inter_extrabold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_ubio"
+        android:layout_below="@id/tv_uname"
+        android:text="Bio"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginBottom="30dp"/>
 
 </RelativeLayout>

@@ -156,7 +156,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                         }
                         if (Utils.distanceBetween(currentLocation.getLatitude(), currentLocation.getLongitude(),
                                 Double.parseDouble(a.getLatitude()),
-                                Double.parseDouble(a.getLongitude())) < 20000) {
+                                Double.parseDouble(a.getLongitude())) < 30000) {
                             tmp.add(a);
                         }
 

@@ -14,16 +14,34 @@
         android:src="@drawable/icon" />
 
     <TextView
-        android:layout_toRightOf="@id/imageView"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="20dp"
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name Surname"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_toRightOf="@id/imageView"
         android:fontFamily="@font/inter_extrabold"
+        android:text="Name Surname"
         android:textColor="@color/black"
-        android:textSize="40dp"/>
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/et_bio"
+        android:layout_height="100dp"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/imageView"
+        android:layout_marginTop="100dp"
+        android:hint="Tell people about yourself"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:id="@+id/btn_bio"
+        android:text="submit"
+        android:layout_below="@id/et_bio"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
 
 
 </RelativeLayout>

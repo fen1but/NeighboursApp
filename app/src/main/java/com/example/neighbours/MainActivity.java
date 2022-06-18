@@ -51,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new MapFragment()).commit();
         setTitle("Map");
         bnw = findViewById(R.id.bottomNavigation);
-        relLayout_searchBar = findViewById(R.id.relLayout_searchBar);
-        relLayout_searchBar.setVisibility(View.GONE);
         bnw.setSelectedItemId(R.id.item2);
         bnw.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -70,22 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
                 return true;
-            }
-        });
-        mSearchText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                geoLocate();
             }
         });
 

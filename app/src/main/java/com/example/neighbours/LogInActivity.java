@@ -34,8 +34,6 @@ public class LogInActivity extends AppCompatActivity {
     EditText et_email, et_password;
     Button btn_enter;
     ImageView iv_google;
-//    SharedPreferences sp;
-//    SharedPreferences.Editor editor;
     private GoogleSignInClient mGoogleSignInClient;
     private final static int RC_SIGN_IN = 123;
 

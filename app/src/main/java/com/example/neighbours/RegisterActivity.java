@@ -117,11 +117,6 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-//                                editor.putString("email_key", email);
-//                                editor.putString("name_key", name);
-//                                editor.putString("phone_key", phone);
-//                                editor.putString("password_key", password);
-//                                editor.commit();
                                 startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                             }
                             else{

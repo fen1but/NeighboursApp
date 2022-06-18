@@ -31,7 +31,7 @@ public class SplashScreen extends AppCompatActivity {
 
         iv_icon = findViewById(R.id.iv_icon);
         handler = new Handler();
-        //FirebaseAuth.getInstance().signOut();
+        FirebaseAuth.getInstance().signOut(); //////////////////
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -40,7 +40,6 @@ public class SplashScreen extends AppCompatActivity {
                 }
                 else
                     startActivity(new Intent(SplashScreen.this, IntroActivity.class));
-                //todo отладка
                 finish();
             }
         },3000);
